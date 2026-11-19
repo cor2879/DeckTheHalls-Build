@@ -1,0 +1,19 @@
+_site/
+.webgl-stage-*/
+.webgl-pages-*/
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+Thumbs.db
+# This is a compiled-build repository, never a Unity project checkout.
+Assets/
+Library/
+Packages/
+ProjectSettings/
+Temp/
+Logs/
+UserSettings/
+*.cs
+*.csproj
+*.sln

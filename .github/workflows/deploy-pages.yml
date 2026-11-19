@@ -1,0 +1,63 @@
+name: Test deployment
+
+on:
+  push:
+    branches: [main]
+    paths: ['site/**', 'Tools/**', '.github/workflows/deploy-pages.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout build repository
+        uses: actions/checkout@v6
+      - name: Check for uploaded game
+        id: payload
+        shell: bash
+        run: |
+          if test -f site/build-manifest.json; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Deployment setup is ready. Stage and push your exported WebGL build to publish the test game." >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Set up Python
+        if: steps.payload.outputs.ready == 'true'
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Verify deployment tooling
+        run: python3 -m unittest discover -s Tools -p 'test_webgl_deploy.py'
+      - name: Install optional compressed-build support
+        if: steps.payload.outputs.ready == 'true'
+        run: python3 -m pip install -r Tools/requirements-deploy.txt
+      - name: Prepare and verify the exported game
+        if: steps.payload.outputs.ready == 'true'
+        run: python3 Tools/webgl_deploy.py prepare
+      - name: Configure Pages
+        if: steps.payload.outputs.ready == 'true'
+        uses: actions/configure-pages@v5
+      - name: Upload game files only
+        if: steps.payload.outputs.ready == 'true'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+      - name: Publish test build
+        if: steps.payload.outputs.ready == 'true'
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,6 +1,6 @@
 # Deck the Halls — test Web build
 
-This public repository contains compiled browser-build files and deployment tooling only. The Unity project, editable artwork and private game source stay separate. The game is not uploaded yet.
+This public repository contains compiled browser-build files and deployment tooling only. The Unity project, editable artwork and private game source stay separate. Game availability depends on a successful export upload and deployment run.
 
 Expected test URL, after the first successful deployment:
 https://cor2879.github.io/DeckTheHalls-Build/

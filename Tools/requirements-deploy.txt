@@ -1,0 +1,2 @@
+# Needed only when preparing Unity Brotli (.br) build payloads.
+Brotli==1.1.0
