@@ -4,6 +4,7 @@ import argparse
 import gzip
 import hashlib
 import json
+import re
 from pathlib import Path, PurePosixPath
 import shutil
 import tempfile
@@ -188,6 +189,18 @@ def decompress_build(path):
     return output
 
 
+def apply_host_layout(index):
+    css = (ROOT / 'Web' / 'game-viewport.css').read_text(encoding='utf-8')
+    # Replace our earlier override when preparing an export made with the new template.
+    index = re.sub(r'<style\b[^>]*\bid=[\"\']dth-viewport[\"\'][^>]*>.*?</style\s*>',
+                   '', index, flags=re.IGNORECASE | re.DOTALL)
+    override = '<style id="dth-viewport">\n' + css + '</style>\n'
+    if re.search(r'</head\s*>', index, flags=re.IGNORECASE):
+        return re.sub(r'</head\s*>', lambda match: override + match.group(), index,
+                      count=1, flags=re.IGNORECASE)
+    return override + index
+
+
 def prepare():
     site = ROOT / 'site'
     entries = validate(site)
@@ -211,7 +224,7 @@ def prepare():
                 mapping.extend([(before, after), (Path(before).name, Path(after).name)])
         for before, after in sorted(set(mapping), key=lambda pair: len(pair[0]), reverse=True):
             index = index.replace(before, after).replace(quote(before), quote(after))
-        index_path.write_text(index, encoding='utf-8')
+        index_path.write_text(apply_host_layout(index), encoding='utf-8')
         (temp / '.nojekyll').touch()
         (temp / 'robots.txt').write_text('User-agent: *\nDisallow: /\n', encoding='utf-8')
         size = sum(p.stat().st_size for p in temp.rglob('*') if p.is_file())

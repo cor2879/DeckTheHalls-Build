@@ -3,7 +3,7 @@ name: Test deployment
 on:
   push:
     branches: [main]
-    paths: ['site/**', 'Tools/**', '.github/workflows/deploy-pages.yml']
+    paths: ['site/**', 'Web/**', 'Tools/**', '.github/workflows/deploy-pages.yml']
   workflow_dispatch:
 
 permissions:

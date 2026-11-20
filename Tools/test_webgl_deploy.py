@@ -1,6 +1,7 @@
 import gzip
 import importlib.util
 import json
+import shutil
 from pathlib import Path
 import tempfile
 import unittest
@@ -17,6 +18,7 @@ class DeploymentTests(unittest.TestCase):
         self.previous = d.ROOT, d.CHUNK_BYTES, d.PAGES_BYTES
         d.ROOT = self.base / 'repo'
         d.ROOT.mkdir()
+        shutil.copytree(Path(__file__).resolve().parents[1] / 'Web', d.ROOT / 'Web')
         self.export = self.base / 'export'
         (self.export / 'Build').mkdir(parents=True)
         (self.export / 'index.html').write_text('<script>var dataUrl="Build/t.data"; var codeUrl="Build/t.wasm";</script>')
@@ -42,6 +44,20 @@ class DeploymentTests(unittest.TestCase):
         self.assertFalse((output / 'README.txt').exists())
         self.assertFalse((output / 'build-manifest.json').exists())
         self.assertTrue((output / '.nojekyll').exists())
+
+    def test_host_layout_overrides_export_without_changing_staged_payload(self):
+        original = '<html><head><style>#unity-canvas{width:100%;height:100%}</style></head><body><canvas id="unity-canvas"></canvas></body></html>'
+        (self.export / 'index.html').write_text(original)
+        d.stage(self.export)
+        d.prepare()
+        output = (d.ROOT / '_site' / 'index.html').read_text()
+        self.assertEqual((d.ROOT / 'site' / 'index.html').read_text(), original)
+        self.assertIn('calc(100vh * 16 / 9)', output)
+        self.assertIn('calc(100vw * 9 / 16)', output)
+        self.assertEqual(output.count('id="dth-viewport"'), 1)
+        self.assertLess(output.index('id="dth-viewport"'), output.index('</head>'))
+        self.assertEqual(d.apply_host_layout(output).count('id="dth-viewport"'), 1)
+        d.validate(d.ROOT / 'site')
 
     def test_gzip_is_prepared_without_changing_original(self):
         (self.export / 'Build' / 't.data').unlink()

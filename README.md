@@ -1,6 +1,6 @@
 # Deck the Halls — test Web build
 
-This public repository contains compiled browser-build files and deployment tooling only. The Unity project, editable artwork and private game source stay separate. Game availability depends on a successful export upload and deployment run.
+This public repository contains compiled browser-build files, website hosting code and deployment tooling. The Unity project, editable artwork and private game source stay separate. Game availability depends on a successful export upload and deployment run.
 
 Expected test URL, after the first successful deployment:
 https://cor2879.github.io/DeckTheHalls-Build/
@@ -71,3 +71,9 @@ Browser saves are tied to the site's origin. The hosted test starts with separat
 - Pages limits: https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits
 - Git file-size limits: https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github
 - Unity compressed builds: https://docs.unity3d.com/6000.0/Documentation/Manual/webgl-deploying.html
+
+## Website presentation
+
+`Web/game-viewport.css` owns the responsive 16:9 game viewport. Preparing an export adds this style after the export's styles, fits the game to both window dimensions, and centers the unused space as letterboxing. Unity continues matching its render resolution to the canvas. The staged, checksummed export remains unchanged; website changes do not require a Unity rebuild.
+
+After pulling website updates, run `python3 Tools/webgl_deploy.py prepare` again and refresh your locally served page. Future Pages deployments apply the same presentation automatically.

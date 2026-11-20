@@ -1,0 +1,17 @@
+/* Keep Unity's CSS canvas and render target at 16:9 as the window changes. */
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #060d14; }
+#game { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+#unity-canvas {
+  display: block;
+  flex: none;
+  width: min(100vw, calc(100vh * 16 / 9)) !important;
+  height: min(100vh, calc(100vw * 9 / 16)) !important;
+  margin: auto;
+  object-fit: contain;
+}
+@supports (height: 100dvh) {
+  #unity-canvas {
+    width: min(100vw, calc(100dvh * 16 / 9)) !important;
+    height: min(100dvh, calc(100vw * 9 / 16)) !important;
+  }
+}
