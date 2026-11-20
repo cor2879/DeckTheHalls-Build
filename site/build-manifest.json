@@ -1,0 +1,129 @@
+{
+  "format": 1,
+  "files": [
+    {
+      "path": "Build/DeckTheHalls.data.br",
+      "size": 320509184,
+      "sha256": "28b0828e7518c5614ded964ba2299d10bf42b28e9c9d2b2483960bae6e01d8d9",
+      "storage": [
+        ".parts/28b0828e7518c5614ded964ba2299d10bf42b28e9c9d2b2483960bae6e01d8d9/0000.part",
+        ".parts/28b0828e7518c5614ded964ba2299d10bf42b28e9c9d2b2483960bae6e01d8d9/0001.part",
+        ".parts/28b0828e7518c5614ded964ba2299d10bf42b28e9c9d2b2483960bae6e01d8d9/0002.part",
+        ".parts/28b0828e7518c5614ded964ba2299d10bf42b28e9c9d2b2483960bae6e01d8d9/0003.part"
+      ]
+    },
+    {
+      "path": "Build/DeckTheHalls.framework.js.br",
+      "size": 79859,
+      "sha256": "cc6a38bdc9f0136d76d6209d7cf928aa39e461d9fa8be157908c89c95adc5ef9",
+      "storage": [
+        "Build/DeckTheHalls.framework.js.br"
+      ]
+    },
+    {
+      "path": "Build/DeckTheHalls.loader.js",
+      "size": 26982,
+      "sha256": "ac87ab4da714869c0cb4a5697c8c4f5d93c20b8cd71ae00ffc239fcbb5da4bf0",
+      "storage": [
+        "Build/DeckTheHalls.loader.js"
+      ]
+    },
+    {
+      "path": "Build/DeckTheHalls.wasm.br",
+      "size": 8811041,
+      "sha256": "3f9b38b8f04af7dfb401f4f1a109d6d7fb8c060a586f4803e513fb222cbc6813",
+      "storage": [
+        "Build/DeckTheHalls.wasm.br"
+      ]
+    },
+    {
+      "path": "StreamingAssets/Video/HuntTheMuglump480p.mp4",
+      "size": 69094102,
+      "sha256": "53de9e20673bc465d0e092c7f8b994893e598fb2a66d228d1a65565347da61a5",
+      "storage": [
+        "StreamingAssets/Video/HuntTheMuglump480p.mp4"
+      ]
+    },
+    {
+      "path": "StreamingAssets/Video/HuntTheMuglump480p.webm",
+      "size": 19735765,
+      "sha256": "b2b0620ab9efe93e712271fcf3859aaece88f1852080194c4d4a7eade98d7426",
+      "storage": [
+        "StreamingAssets/Video/HuntTheMuglump480p.webm"
+      ]
+    },
+    {
+      "path": "StreamingAssets/Video/OperationBringThemHome480p.mp4",
+      "size": 98559178,
+      "sha256": "1a8d805f8e14b2819b9937e098558a4c5b77984aed5113446c242ff1395123a8",
+      "storage": [
+        ".parts/1a8d805f8e14b2819b9937e098558a4c5b77984aed5113446c242ff1395123a8/0000.part",
+        ".parts/1a8d805f8e14b2819b9937e098558a4c5b77984aed5113446c242ff1395123a8/0001.part"
+      ]
+    },
+    {
+      "path": "StreamingAssets/Video/OperationBringThemHome480p.webm",
+      "size": 21742466,
+      "sha256": "2507acab28a6fea59f0fe6caf39b688bae625a8bd5e3100f53854ddb7c72bf81",
+      "storage": [
+        "StreamingAssets/Video/OperationBringThemHome480p.webm"
+      ]
+    },
+    {
+      "path": "StreamingAssets/Video/ParaflixxIntro480p.mp4",
+      "size": 3005996,
+      "sha256": "10bd9403fb31e88a0fd1dbdab07692f48046b81155959c4109e207b3393a65b2",
+      "storage": [
+        "StreamingAssets/Video/ParaflixxIntro480p.mp4"
+      ]
+    },
+    {
+      "path": "StreamingAssets/Video/ParaflixxIntro480p.webm",
+      "size": 1558542,
+      "sha256": "96a4da0de68c5d64d50b7818433d357be2b9b3b8b95da8670441ee4213305450",
+      "storage": [
+        "StreamingAssets/Video/ParaflixxIntro480p.webm"
+      ]
+    },
+    {
+      "path": "StreamingAssets/Video/ParaflixxTrailer480p.mp4",
+      "size": 41059006,
+      "sha256": "9e4ff2940fad96dac7cb5537a8472a7e52f32928c5d3bd1a13551213f949e367",
+      "storage": [
+        "StreamingAssets/Video/ParaflixxTrailer480p.mp4"
+      ]
+    },
+    {
+      "path": "StreamingAssets/Video/ParaflixxTrailer480p.webm",
+      "size": 14267434,
+      "sha256": "f46deea4ffddd7ecc69a8dea5a3070478553afddd57d9e8e57f7a2cfba5e48df",
+      "storage": [
+        "StreamingAssets/Video/ParaflixxTrailer480p.webm"
+      ]
+    },
+    {
+      "path": "StreamingAssets/Video/VampireCrunch480p.mp4",
+      "size": 24510107,
+      "sha256": "cf65d3bcc70992287c2e40c028530b70b463c64bfc6c4751037f13cfdf0a6b69",
+      "storage": [
+        "StreamingAssets/Video/VampireCrunch480p.mp4"
+      ]
+    },
+    {
+      "path": "StreamingAssets/Video/VampireCrunch480p.webm",
+      "size": 6398021,
+      "sha256": "1f47881421296e9b8444177ed26862e139705d3aafd93fc5be27d8b14b0d72c8",
+      "storage": [
+        "StreamingAssets/Video/VampireCrunch480p.webm"
+      ]
+    },
+    {
+      "path": "index.html",
+      "size": 3556,
+      "sha256": "e183cf88c8cd2199bd9a355c934cd31ee7f58e495d7168b24a620035a5d7757a",
+      "storage": [
+        "index.html"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Deck the Halls • Venomous Press</title>
+  <style>
+    html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#060d14;color:#ffefca;font-family:Georgia,serif}
+    #game{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+    canvas{width:100%;height:100%;object-fit:contain;outline:none;touch-action:none}
+    #loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;background:#060d14;padding:24px;box-sizing:border-box}
+    #card{max-width:720px;width:100%} h1{font-size:clamp(32px,7vw,70px);letter-spacing:.08em;color:#f8c254;margin:.35em 0}
+    .credit{font-size:clamp(16px,2.8vw,25px);line-height:1.65;letter-spacing:.04em}
+    progress{width:min(440px,85%);height:16px;accent-color:#f8c254;margin-top:35px}
+    #status{font:16px system-ui,sans-serif;line-height:1.6;white-space:pre-wrap}
+    #retry{padding:12px 28px;font:18px system-ui,sans-serif;background:#184b3c;color:#fff0c4;border:1px solid #f8c254;cursor:pointer}
+    [hidden]{display:none!important}
+  </style>
+</head>
+<body>
+  <main id="game"><canvas id="unity-canvas" width="960" height="600" tabindex="0" aria-label="Deck the Halls game"></canvas></main>
+  <section id="loading" aria-label="Loading game"><div id="card">
+    <div class="credit">The Lion of God Presents…</div>
+    <h1>DECK THE HALLS</h1>
+    <div class="credit">A Venomous Press Production…</div>
+    <progress id="progress" value="0" max="1" aria-label="Game download progress"></progress>
+    <p id="status" role="status" aria-live="polite">Preparing the holiday mayhem…</p>
+    <button id="retry" type="button" hidden>Try Again</button>
+  </div></section>
+  <script>
+    var buildUrl = "Build";
+    var canvas = document.getElementById("unity-canvas");
+    var loading = document.getElementById("loading");
+    var progress = document.getElementById("progress");
+    var statusText = document.getElementById("status");
+    var retry = document.getElementById("retry");
+    function fail(message) {
+      loading.hidden = false;
+      progress.hidden = true;
+      statusText.textContent = "The game could not load. Please try again.\n" + String(message);
+      retry.hidden = false;
+    }
+    retry.addEventListener("click", function () { location.reload(); });
+    var script = document.createElement("script");
+    script.src = buildUrl + "/DeckTheHalls.loader.js";
+    script.onerror = function () { fail("Unable to download the game loader."); };
+    script.onload = function () {
+      try {
+      createUnityInstance(canvas, {
+        dataUrl: buildUrl + "/DeckTheHalls.data.br",
+        frameworkUrl: buildUrl + "/DeckTheHalls.framework.js.br",
+        codeUrl: buildUrl + "/DeckTheHalls.wasm.br",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Venomous Press",
+        productName: "Deck the Halls",
+        productVersion: "1.0.1"
+      }, function (value) {
+        progress.value = Math.max(0, Math.min(1, value));
+        statusText.textContent = value >= .99 ? "Setting the stage…" : "Loading… " + Math.round(progress.value * 100) + "%";
+      }).then(function (instance) {
+        window.deckTheHallsInstance = instance;
+        loading.hidden = true;
+        canvas.focus();
+      }).catch(fail);
+      } catch (error) { fail(error); }
+    };
+    document.body.appendChild(script);
+  </script>
+</body>
+</html>
