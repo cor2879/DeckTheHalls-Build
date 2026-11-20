@@ -3,19 +3,19 @@
   "files": [
     {
       "path": "Build/DeckTheHalls.data.br",
-      "size": 320509184,
-      "sha256": "28b0828e7518c5614ded964ba2299d10bf42b28e9c9d2b2483960bae6e01d8d9",
+      "size": 320475837,
+      "sha256": "dd22dc9dfa59b58034206dfbb277c2ab2e9082717d1db79e2dfd1c689ae97cda",
       "storage": [
-        ".parts/28b0828e7518c5614ded964ba2299d10bf42b28e9c9d2b2483960bae6e01d8d9/0000.part",
-        ".parts/28b0828e7518c5614ded964ba2299d10bf42b28e9c9d2b2483960bae6e01d8d9/0001.part",
-        ".parts/28b0828e7518c5614ded964ba2299d10bf42b28e9c9d2b2483960bae6e01d8d9/0002.part",
-        ".parts/28b0828e7518c5614ded964ba2299d10bf42b28e9c9d2b2483960bae6e01d8d9/0003.part"
+        ".parts/dd22dc9dfa59b58034206dfbb277c2ab2e9082717d1db79e2dfd1c689ae97cda/0000.part",
+        ".parts/dd22dc9dfa59b58034206dfbb277c2ab2e9082717d1db79e2dfd1c689ae97cda/0001.part",
+        ".parts/dd22dc9dfa59b58034206dfbb277c2ab2e9082717d1db79e2dfd1c689ae97cda/0002.part",
+        ".parts/dd22dc9dfa59b58034206dfbb277c2ab2e9082717d1db79e2dfd1c689ae97cda/0003.part"
       ]
     },
     {
       "path": "Build/DeckTheHalls.framework.js.br",
-      "size": 79859,
-      "sha256": "cc6a38bdc9f0136d76d6209d7cf928aa39e461d9fa8be157908c89c95adc5ef9",
+      "size": 79918,
+      "sha256": "2212d76207ed592089c15977db3790037c8db4187f80aa7ec208cf652ca30c92",
       "storage": [
         "Build/DeckTheHalls.framework.js.br"
       ]
@@ -23,15 +23,15 @@
     {
       "path": "Build/DeckTheHalls.loader.js",
       "size": 26982,
-      "sha256": "ac87ab4da714869c0cb4a5697c8c4f5d93c20b8cd71ae00ffc239fcbb5da4bf0",
+      "sha256": "a22e00c5bf754e69172604c77aa7dae646ba72e078f99356df5049f93df0e35f",
       "storage": [
         "Build/DeckTheHalls.loader.js"
       ]
     },
     {
       "path": "Build/DeckTheHalls.wasm.br",
-      "size": 8811041,
-      "sha256": "3f9b38b8f04af7dfb401f4f1a109d6d7fb8c060a586f4803e513fb222cbc6813",
+      "size": 8831936,
+      "sha256": "78e4cbfbc84f2a39906360a1bb88fc3ab8959691b6afd4494d4cf0a4ad00c553",
       "storage": [
         "Build/DeckTheHalls.wasm.br"
       ]
@@ -119,8 +119,8 @@
     },
     {
       "path": "index.html",
-      "size": 3556,
-      "sha256": "e183cf88c8cd2199bd9a355c934cd31ee7f58e495d7168b24a620035a5d7757a",
+      "size": 4230,
+      "sha256": "4ac9c784b366efbe0441bdf04abb1233ee69eab1a080a6b236f473ec8a1e227a",
       "storage": [
         "index.html"
       ]

@@ -16,9 +16,28 @@
     #retry{padding:12px 28px;font:18px system-ui,sans-serif;background:#184b3c;color:#fff0c4;border:1px solid #f8c254;cursor:pointer}
     [hidden]{display:none!important}
   </style>
+  <style id="dth-viewport">
+/* Keep Unity's CSS canvas and render target at 16:9 as the window changes. */
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #060d14; }
+#game { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+#unity-canvas {
+  display: block;
+  flex: none;
+  width: min(100vw, calc(100vh * 16 / 9)) !important;
+  height: min(100vh, calc(100vw * 9 / 16)) !important;
+  margin: auto;
+  object-fit: contain;
+}
+@supports (height: 100dvh) {
+  #unity-canvas {
+    width: min(100vw, calc(100dvh * 16 / 9)) !important;
+    height: min(100dvh, calc(100vw * 9 / 16)) !important;
+  }
+}
+  </style>
 </head>
 <body>
-  <main id="game"><canvas id="unity-canvas" width="960" height="600" tabindex="0" aria-label="Deck the Halls game"></canvas></main>
+  <main id="game"><canvas id="unity-canvas" width="960" height="540" tabindex="0" aria-label="Deck the Halls game"></canvas></main>
   <section id="loading" aria-label="Loading game"><div id="card">
     <div class="credit">The Lion of God Presents…</div>
     <h1>DECK THE HALLS</h1>
