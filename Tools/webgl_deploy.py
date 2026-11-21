@@ -201,6 +201,19 @@ def apply_host_layout(index):
     return override + index
 
 
+def apply_loading_presentation(index):
+    # Presentation changes only: leave exported Unity loader/configuration intact.
+    index = index.replace('Preparing the holiday mayhem…', 'Preparing game files…')
+    index = index.replace('"Setting the stage…" : "Loading… "',
+                          '"Starting game…" : "Downloading game files… "')
+    if 'id="first-load-note"' not in index and 'id="status"' in index:
+        note = (ROOT / 'Web' / 'loading-note.html').read_text(encoding='utf-8')
+        index = re.sub(r'(<p\b[^>]*\bid="status"[^>]*>.*?</p\s*>)',
+                       lambda match: match.group() + '\n' + note, index,
+                       count=1, flags=re.IGNORECASE | re.DOTALL)
+    return index
+
+
 def prepare():
     site = ROOT / 'site'
     entries = validate(site)
@@ -224,7 +237,7 @@ def prepare():
                 mapping.extend([(before, after), (Path(before).name, Path(after).name)])
         for before, after in sorted(set(mapping), key=lambda pair: len(pair[0]), reverse=True):
             index = index.replace(before, after).replace(quote(before), quote(after))
-        index_path.write_text(apply_host_layout(index), encoding='utf-8')
+        index_path.write_text(apply_loading_presentation(apply_host_layout(index)), encoding='utf-8')
         (temp / '.nojekyll').touch()
         (temp / 'robots.txt').write_text('User-agent: *\nDisallow: /\n', encoding='utf-8')
         size = sum(p.stat().st_size for p in temp.rglob('*') if p.is_file())
@@ -254,3 +267,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

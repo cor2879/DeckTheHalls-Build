@@ -59,6 +59,15 @@ class DeploymentTests(unittest.TestCase):
         self.assertEqual(d.apply_host_layout(output).count('id="dth-viewport"'), 1)
         d.validate(d.ROOT / 'site')
 
+    def test_loading_copy_preserves_config_and_does_not_duplicate_note(self):
+        original = '<p id="status">Preparing the holiday mayhem…</p><script>var codeUrl="Build/t.wasm"; statusText.textContent = value >= .99 ? "Setting the stage…" : "Loading… " + value;</script>'
+        output = d.apply_loading_presentation(original)
+        self.assertIn('Downloading game files…', output)
+        self.assertIn('Starting game…', output)
+        self.assertIn('first load may take a few minutes', output)
+        self.assertIn('var codeUrl="Build/t.wasm";', output)
+        self.assertEqual(d.apply_loading_presentation(output), output)
+
     def test_gzip_is_prepared_without_changing_original(self):
         (self.export / 'Build' / 't.data').unlink()
         data = b'UnityWebData1.0\x00game payload'
